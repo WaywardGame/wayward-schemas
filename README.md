@@ -2,6 +2,8 @@
 
 Provides schemas for the JSON files used in Wayward modding.
 
+View the extension on the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=Aarilight.wayward-schemas)
+
 ### Provided schemas:
 
 - [`mod.json`](https://waywardgame.github.io/index.html#mod-json)
