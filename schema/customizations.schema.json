@@ -1,0 +1,65 @@
+{
+	"title": "Customizations for Wayward",
+	"description": "A file containing new customization options for Wayward.",
+	"anyOf": [
+		{
+			"type": "object",
+			"properties": {
+				"hair-colors": {
+					"description": "An array of colors that will be used as swatches in the game. Valid formats are: `#RGB` and `#RRGGBB`",
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$"
+					}
+				}
+			},
+			"required": ["hair-colors"]
+		},
+		{
+			"type": "object",
+			"properties": {
+				"skin-colors": {
+					"description": "An array of colors that will be used as swatches in the game. Valid formats are: `#RGB` and `#RRGGBB`",
+					"type": "array",
+					"items": {
+						"type": "string",
+						"pattern": "^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6})$"
+					}
+				}
+			},
+			"required": ["skin-colors"]
+		},
+		{
+			"type": "object",
+			"properties": {
+				"hair-styles": {
+					"description": "An array of hairstyles. An entry can be either a name, wherein the path it is loaded from will be `static/image/hairstyle/${name}.png`, or an object containing its name and the path to load from.",
+					"type": "array",
+					"items": {
+						"oneOf": [
+							{
+								"type": "string"
+							},
+							{
+								"type": "object",
+								"properties": {
+									"name": {
+										"description": "The name of the hairstyle. Has no effect in-game, only used internally.",
+										"type": "string"
+									},
+									"imagePath": {
+										"description": "The path of the hairstyle. Example: `specialHairstyles/Pigtails` would load `specialHairstyles/Pigtails.png`",
+										"type": "string"
+									}
+								},
+								"required": ["name", "imagePath"]
+							}
+						]
+					}
+				}
+			},
+			"required": ["skin-colors"]
+		}
+	]
+}

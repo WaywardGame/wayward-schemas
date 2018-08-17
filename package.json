@@ -1,0 +1,33 @@
+{
+	"name": "wayward-schemas",
+	"displayName": "Wayward Schemas",
+	"description": "Adds schemas for Wayward mods.",
+	"version": "1.0.0",
+	"publisher": "Aarilight",
+	"engines": {
+		"vscode": "^1.26.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"contributes": {
+		"jsonValidation":[
+			{
+				"fileMatch": "mod.json",
+				"url": "./schema/mod.schema.json" 
+			},
+			{
+				"fileMatch": "lang/*.json",
+				"url": "./schema/lang.schema.json" 
+			},
+			{
+				"fileMatch": "imageOverrides.json",
+				"url": "./schema/imageOverrides.schema.json" 
+			},
+			{
+				"fileMatch": "customizations.json",
+				"url": "./schema/customizations.schema.json" 
+			}
+		]
+	}
+}

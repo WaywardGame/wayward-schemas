@@ -1,0 +1,24 @@
+{
+	"title": "Image Overrides for Wayward",
+	"description": "A file containing images/textures to override, and the paths in this mod of the images which override them.",
+	"type": "array",
+	"items": {
+		"description": "An image/texture to override.",
+		"type": "object",
+		"properties": {
+			"replace": {
+				"description": "The base game image to replace. Examples: `doodad/mapletree`, `creature/bogling`",
+				"type": "string"
+			},
+			"animated": {
+				"description": "Whether the new image is animated. (Uses a different frame every tick)",
+				"enum": [ true ]
+			},
+			"imagePath": {
+				"description": "The path to the replacement image. The `.png` file extension is not required. If this property is not provided, the replacement will use the path: `static/image/${replace}.png`",
+				"type": "string"
+			}
+		},
+		"required": ["replace"]
+	}
+}
