@@ -44,6 +44,25 @@
 		"publishedFileId": {
 			"description": "This property is set by Wayward when your mod is published. It is the ID of your mod. Do not change it or manually add it.",
 			"type": "string"
+		},
+		"tags": {
+			"description": "An array of tags for this mod. The tag must exist on the workshop.\n\nThe tags `Multiplayer` and `Clientside` are added automatically based on the `multiplayerClientside` and `multiplayerCompatible` properties.\n\nThe tags `Language` and `Character` are added automatically based on provided languages or customizations, but can also be added here.",
+			"type": "array",
+			"items": {
+				"enum": [
+					"Item",
+					"Creature",
+					"Audio",
+					"Doodad",
+					"Cheat",
+					"Terrain",
+					"User Interface",
+					"Language",
+					"Character"
+				]
+			},
+			"minItems": 1,
+			"uniqueItems": true
 		}
 	},
 	"allOf": [
