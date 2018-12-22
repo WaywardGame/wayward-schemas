@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.1.2
+- Fixed schemas not being published with the rest of the extension? (Thanks VSCE??)
+
 ## 1.1.1
 - Fix `null` dictionary entries not working.
 

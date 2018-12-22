@@ -2,7 +2,7 @@
 	"name": "wayward-schemas",
 	"displayName": "Wayward Schemas",
 	"description": "Adds schemas for Wayward mods.",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"publisher": "Aarilight",
 	"engines": {
 		"vscode": "^1.26.0"
