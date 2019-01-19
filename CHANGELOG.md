@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.1.3
+- Wayward 2.7.3 update.
+- `lang.json`
+	- The count matcher in article rules now supports `{min: number, max?: number}` objects.
+
 ## 1.1.2
 - Fixed schemas not being published with the rest of the extension? (Thanks VSCE??)
 
