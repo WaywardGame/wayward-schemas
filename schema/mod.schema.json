@@ -46,7 +46,7 @@
 			"type": "string"
 		},
 		"tags": {
-			"description": "An array of tags for this mod. The tag must exist on the workshop.\n\nThe tags `Multiplayer` and `Clientside` are added automatically based on the `multiplayerClientside` and `multiplayerCompatible` properties.\n\nThe tags `Language` and `Character` are added automatically based on provided languages or customizations, but can also be added here.",
+			"description": "An array of tags for this mod. The tag must exist on the workshop.\n\nThe tags `Multiplayer` and `Clientside` are added automatically based on the `multiplayer` property.\n\nThe tags `Language` and `Character` are added automatically based on provided languages or customizations, but can also be added here.",
 			"type": "array",
 			"items": {
 				"enum": [
@@ -63,117 +63,87 @@
 			},
 			"minItems": 1,
 			"uniqueItems": true
+		},
+		"multiplayer": {
+			"description": "The multiplayer compatibility of this mod. If not provided, the mod is not compatible with multiplayer, and must be disabled.",
+			"anyOf": [
+				{ 
+					"const": "clientside",
+					"description": "This mod is purely client-side: It can be enabled on a host or client and no other clients will require it enabled."
+				},
+				{ 
+					"const": "compatible",
+					"description": "This mod is compatible with multiplayer, but the host and all clients require the mod to be enabled."
+				},
+				{ 
+					"const": "serverside",
+					"description": "This mod is purely server-side: It can be enabled only on a dedicated server, and no clients will require it enabled."
+				}
+			]
 		}
 	},
-	"allOf": [
+	"required": ["name", "description", "version", "author", "compatibleMinorVersions"],
+	
+	"anyOf": [
 		{
-			"oneOf": [
-				{
-					"not": {
-						"oneOf": [
-							{
-								"type": "object",
-								"properties": {
-									"multiplayerClientside": {}
-								},
-								"required": ["multiplayerClientside"]
-							},
-							{
-								"type": "object",
-								"properties": {
-									"multiplayerCompatible": {}
-								},
-								"required": ["multiplayerCompatible"]
-							}
-						]
-					}
-				},
-				{
-					"type": "object",
-					"properties": {
-						"multiplayerClientside": {
-							"description": "This mod is purely client-side: It can be enabled on a host or client and no other clients will require it enabled.",
-							"enum": [ true ]
-						}
-					},
-					"required": ["multiplayerClientside"]
-				},
-				{
-					"type": "object",
-					"properties": {
-						"multiplayerCompatible": {
-							"description": "This mod is compatible with multiplayer, but the host and all clients require the mod to be enabled.",
-							"enum": [ true ]
-						}
-					},
-					"required": ["multiplayerCompatible"]
+			"type": "object",
+			"properties": {
+				"file": {
+					"description": "The path to the JavaScript file for this mod.",
+					"type": "string"
 				}
-			]	
+			},
+			"required": ["file"]
 		},
 		{
-			"anyOf": [
-				{
-					"type": "object",
-					"properties": {
-						"file": {
-							"description": "The path to the JavaScript file for this mod.",
-							"type": "string"
-						}
+			"type": "object",
+			"properties": {
+				"languages": {
+					"description": "An array of languages that this mod provides. Each entry should be a path to a language JSON file. (The `.json` file extension is not required, it'll be appended if it's not present)",
+					"type": "array",
+					"items": {
+						"type": "string"
 					},
-					"required": ["file"]
-				},
-				{
-					"type": "object",
-					"properties": {
-						"languages": {
-							"description": "An array of languages that this mod provides. Each entry should be a path to a language JSON file. (The `.json` file extension is not required, it'll be appended if it's not present)",
-							"type": "array",
-							"items": {
-								"type": "string"
-							},
-							"minItems": 1,
-							"uniqueItems": true
-						}
-					},
-					"required": ["languages"]
-				},
-				{
-					"type": "object",
-					"properties": {
-						"customizations": {
-							"description": "Indicates that this mod contains a `customizations.json` file.",
-							"enum": [ true ]
-						}
-					},
-					"required": ["customizations"]
-				},
-				{
-					"type": "object",
-					"properties": {
-						"imageOverrides": {
-							"description": "Indicates that this mod contains an `imageOverrides.json` file.",
-							"enum": [ true ]
-						}
-					},
-					"required": ["imageOverrides"]
-				},
-				{
-					"type": "object",
-					"properties": {
-						"stylesheets": {
-							"description": "An array of stylesheets provided by this mod. Each entry should be a path to a CSS file. (The `.css` file extension is not required, it'll be appended if it's not present)",
-							"type": "array",
-							"items": {
-								"type": "string"
-							},
-							"minItems": 1,
-							"uniqueItems": true
-						}
-					},
-					"required": ["stylesheets"]
+					"minItems": 1,
+					"uniqueItems": true
 				}
-			],
-			"required": ["name", "description", "version", "author", "compatibleMinorVersions"]
+			},
+			"required": ["languages"]
+		},
+		{
+			"type": "object",
+			"properties": {
+				"customizations": {
+					"description": "Indicates that this mod contains a `customizations.json` file.",
+					"enum": [ true ]
+				}
+			},
+			"required": ["customizations"]
+		},
+		{
+			"type": "object",
+			"properties": {
+				"imageOverrides": {
+					"description": "Indicates that this mod contains an `imageOverrides.json` file.",
+					"enum": [ true ]
+				}
+			},
+			"required": ["imageOverrides"]
+		},
+		{
+			"type": "object",
+			"properties": {
+				"stylesheets": {
+					"description": "An array of stylesheets provided by this mod. Each entry should be a path to a CSS file. (The `.css` file extension is not required, it'll be appended if it's not present)",
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"minItems": 1,
+					"uniqueItems": true
+				}
+			},
+			"required": ["stylesheets"]
 		}
 	]
 }
