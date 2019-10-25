@@ -28,10 +28,6 @@
 			"minItems": 1,
 			"uniqueItems": true
 		},
-		"unloadable": {
-			"description": "Include this property if your mod does not manipulate save data. This means that if someone loaded a save without your mod, it wouldn't break the save. For example, if you add creatures or items, etc, they become part of the save and the mod must be enabled to load them — in this case the mod would *not* be unloadable.",
-			"enum": [ true ]
-		},
 		"publishedFileId": {
 			"description": "This property is set by Wayward when your mod is published. It is the ID of your mod. Do not change it or manually add it.",
 			"type": "string"
@@ -55,8 +51,22 @@
 			"minItems": 1,
 			"uniqueItems": true
 		},
+		
+		"file": {
+			"description": "The path to the JavaScript file for this mod.",
+			"type": "string"
+		},
+		"waywardVersion": {
+			"description": "The version of Wayward that this script can run on",
+			"type": "string",
+			"pattern": "^\\d+\\.\\d+\\.\\d+(-beta)?$"
+		},
+		"allowUnlockingMilestones": {
+			"description": "Whether milestones can be unlocked when this mod is enabled.",
+			"enum": [ true ]
+		},
 		"multiplayer": {
-			"description": "The multiplayer compatibility of this mod. If not provided, the mod is not compatible with multiplayer, and must be disabled.",
+			"description": "The multiplayer compatibility of this mod. This is handled automatically in non-script mods. If not provided, the mod is not compatible with multiplayer, and must be disabled.",
 			"anyOf": [
 				{ 
 					"const": "clientside",
@@ -72,18 +82,8 @@
 				}
 			]
 		},
-
-		"file": {
-			"description": "The path to the JavaScript file for this mod.",
-			"type": "string"
-		},
-		"waywardVersion": {
-			"description": "The version of Wayward that this script can run on",
-			"type": "string",
-			"pattern": "^\\d+\\.\\d+\\.\\d+(-beta)?$"
-		},
-		"allowUnlockingMilestones": {
-			"description": "Whether milestones can be unlocked when this mod is enabled.",
+		"unloadable": {
+			"description": "Include this property if your mod does not manipulate save data. This means that if someone loaded a save without your mod, it wouldn't break the save. For example, if you add creatures or items, etc, they become part of the save and the mod must be enabled to load them — in this case the mod would *not* be unloadable.",
 			"enum": [ true ]
 		},
 
@@ -117,11 +117,19 @@
 			"uniqueItems": true
 		}
 	},
+	"dependencies": {
+		"file": ["waywardVersion"],
+		"waywardVersion": ["file"],
+		"multiplayer": ["file"],
+		"allowUnlockingMilestones": ["file"],
+		"unloadable": ["file"]
+	},
+	"additionalProperties": false,
 	"allOf": [
 		{ "required": ["name", "description", "version", "author"] },
 		{ 
 			"anyOf": [
-				{ "required": ["file", "waywardVersion"] },
+				{ "required": ["file"] },
 				{ "required": ["languages"] },
 				{ "required": ["customizations"] },
 				{ "required": ["imageOverrides"] },

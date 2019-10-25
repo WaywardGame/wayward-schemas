@@ -44,6 +44,7 @@
 			}
 		}
 	},
+	"additionalProperties": false,
 	"anyOf": [
 		{ "required": ["hair-colors"] },
 		{ "required": ["skin-colors"] },
