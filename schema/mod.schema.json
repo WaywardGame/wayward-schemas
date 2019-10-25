@@ -19,15 +19,6 @@
 			"description": "The name of the person/team that made the mod.",
 			"type": "string"
 		},
-		"compatibleMinorVersions": {
-			"description": "A list of Wayward \"minor\" versions that are compatible with this mod. For instance, specifying your mod as being compatible with 2.6.#, 2.5.#, and 2.4.# would be `[\"4\", \"5\", \"6\"]`",
-			"type": "array",
-			"items": {
-				"type": "integer"
-			},
-			"minItems": 1,
-			"uniqueItems": true
-		},
 		"dependencies": {
 			"description": "A list of mods that your mod requires to be enabled to function correctly. Each entry should be a string representing the mod's Steam Workshop ID. For example, the mod with the URL `https://steamcommunity.com/sharedfiles/filedetails/?id=879852137` has the ID `879852137`",
 			"type": "array",
@@ -80,74 +71,62 @@
 					"description": "This mod is purely server-side: It can be enabled only on a dedicated server, and no clients will require it enabled."
 				}
 			]
+		},
+
+		"file": {
+			"description": "The path to the JavaScript file for this mod.",
+			"type": "string"
+		},
+		"waywardVersion": {
+			"description": "The version of Wayward that this script can run on",
+			"type": "string",
+			"pattern": "^\\d+\\.\\d+\\.\\d+(-beta)?$"
+		},
+		"allowUnlockingMilestones": {
+			"description": "Whether milestones can be unlocked when this mod is enabled.",
+			"enum": [ true ]
+		},
+
+		"languages": {
+			"description": "An array of languages that this mod provides. Each entry should be a path to a language JSON file. (The `.json` file extension is not required, it'll be appended if it's not present)",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		},
+
+		"customizations": {
+			"description": "Indicates that this mod contains a `customizations.json` file.",
+			"enum": [ true ]
+		},
+		
+		"imageOverrides": {
+			"description": "Indicates that this mod contains an `imageOverrides.json` file.",
+			"enum": [ true ]
+		},
+
+		"stylesheets": {
+			"description": "An array of stylesheets provided by this mod. Each entry should be a path to a CSS file. (The `.css` file extension is not required, it'll be appended if it's not present)",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"minItems": 1,
+			"uniqueItems": true
 		}
 	},
-	"required": ["name", "description", "version", "author", "compatibleMinorVersions"],
-	
-	"anyOf": [
-		{
-			"type": "object",
-			"properties": {
-				"file": {
-					"description": "The path to the JavaScript file for this mod.",
-					"type": "string"
-				},
-				"allowUnlockingMilestones": {
-					"description": "Whether milestones can be unlocked when this mod is enabled.",
-					"type": "boolean"
-				}
-			},
-			"required": ["file"]
-		},
-		{
-			"type": "object",
-			"properties": {
-				"languages": {
-					"description": "An array of languages that this mod provides. Each entry should be a path to a language JSON file. (The `.json` file extension is not required, it'll be appended if it's not present)",
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"minItems": 1,
-					"uniqueItems": true
-				}
-			},
-			"required": ["languages"]
-		},
-		{
-			"type": "object",
-			"properties": {
-				"customizations": {
-					"description": "Indicates that this mod contains a `customizations.json` file.",
-					"enum": [ true ]
-				}
-			},
-			"required": ["customizations"]
-		},
-		{
-			"type": "object",
-			"properties": {
-				"imageOverrides": {
-					"description": "Indicates that this mod contains an `imageOverrides.json` file.",
-					"enum": [ true ]
-				}
-			},
-			"required": ["imageOverrides"]
-		},
-		{
-			"type": "object",
-			"properties": {
-				"stylesheets": {
-					"description": "An array of stylesheets provided by this mod. Each entry should be a path to a CSS file. (The `.css` file extension is not required, it'll be appended if it's not present)",
-					"type": "array",
-					"items": {
-						"type": "string"
-					},
-					"minItems": 1,
-					"uniqueItems": true
-				}
-			},
-			"required": ["stylesheets"]
+	"allOf": [
+		{ "required": ["name", "description", "version", "author"] },
+		{ 
+			"anyOf": [
+				{ "required": ["file", "waywardVersion"] },
+				{ "required": ["languages"] },
+				{ "required": ["customizations"] },
+				{ "required": ["imageOverrides"] },
+				{ "required": ["stylesheets"] }
+			]
 		}
 	]
 }
