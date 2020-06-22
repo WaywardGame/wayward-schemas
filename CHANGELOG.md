@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.2.1
+Wayward 2.8.5 update.
+- `lang.json`
+	- Fixed `shouldPluralize` still existing at all. (This actually got removed a while back.)
+	- Added missing `alternateFontStyle` option.
+	- Updated default entries list.
+
 ## 1.2.0
 Wayward 2.8.0 update.
 - `mod.json`
