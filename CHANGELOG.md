@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.2.2
+Wayward 2.9.0 update.
+
 ## 1.2.1
 Wayward 2.8.5 update.
 - `lang.json`
