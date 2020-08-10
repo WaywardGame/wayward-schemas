@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.3.0
+Wayward 2.9.2 update.
+- All Wayward JSON files now allow comments.
+
 ## 1.2.2
 Wayward 2.9.0 update.
 
