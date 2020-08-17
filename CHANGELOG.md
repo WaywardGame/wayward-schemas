@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.3.1
+Wayward 2.9.3 update.
+- `launch_options.json` now allows comments.
+
 ## 1.3.0
 Wayward 2.9.2 update.
 - All Wayward JSON files now allow comments.
