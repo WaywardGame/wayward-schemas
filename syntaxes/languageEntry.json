@@ -14,7 +14,19 @@
 				{ "include": "#segment-conditional" },
 				{ "include": "#segment-color" },
 				{ "include": "#segment-list" },
-				{ "include": "#segment-bindings" }
+				{ "include": "#segment-bindings" },
+				{ "include": "#segment-heading" },
+				{ "include": "#segment-link" },
+				{ "include": "#segment-number-words" },
+				{ "include": "#segment-number-roman" },
+				{ "include": "#segment-number-places" },
+				{ "include": "#segment-number-percent" },
+				{ "include": "#segment-number-difference" },
+				{ "include": "#segment-pluralize" },
+				{ "include": "#segment-italic" },
+				{ "include": "#segment-bold" },
+				{ "include": "#segment-underline" },
+				{ "include": "#segment-translation" }
 			]
 		},
 		"segment-escaped": {
@@ -69,7 +81,7 @@
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
 		"segment-list": {
-			"begin": "(\\{)(\\w+(?:\\.\\w+)*)?(\\.\\.\\.)",
+			"begin": "(\\{)(\\w+(?:\\.\\w+)*)?(\\.\\.\\.?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { "patterns": [ { "include": "#argument"} ] },
@@ -89,12 +101,151 @@
 			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
+		"segment-heading": {
+			"begin": "\\{#{1,6} ",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-link": {
+			"begin": "(\\{)(LINK)?(\\()(?:(https?:\\/\\/.*?)|(Menu\\.(?:\\w+(?:\\.\\w+)?)))(\\):?)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "entity.name.function" },
+				"3": { "name": "punctuation.segment.paren.begin" },
+				"4": { "name": "markup.underline.link" },
+				"5": { "patterns": [{ "include": "#address" }] },
+				"6": { "name": "punctuation.segment.paren.end" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-number-words": {
+			"begin": "(\\{#)(WORDS)(:)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "keyword.control.words" },
+				"3": { "name": "punctuation.segment.content" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-number-roman": {
+			"begin": "(\\{#)(ROMAN)(:)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "keyword.control.roman" },
+				"3": { "name": "punctuation.segment.content" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-number-places": {
+			"begin": "(\\{#)(\\d)(:)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "constant.numeric.integer" },
+				"3": { "name": "punctuation.segment.content" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-number-percent": {
+			"begin": "(\\{%)(\\d)?(:)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "constant.numeric.integer" },
+				"3": { "name": "punctuation.segment.content" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-number-difference": {
+			"begin": "\\{\\+",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-pluralize": {
+			"begin": "(\\{)(NOUN|PLURAL|ARTICLE)(?:(\\()(?:(\\d+[\\d\\.]*)|(\\{\\w+(?:\\.\\w+)*\\}))?(?:(?:(?<=[^\\(])(,\\s*|\\s+)|(?<=\\())(?:(ARTICLE)|(\\{\\w+(?:\\.\\w+)*\\})))?(\\)))?((?<=\\)):?|(?<=[^\\)]):)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "entity.name.function" },
+				"3": { "name": "punctuation.segment.paren.begin" },
+				"4": { "name": "constant.numeric.decimal" },
+				"5": { "patterns": [{ "include": "#segment-argument" }] },
+				"6": { "name": "punctuation.segment.additional" },
+				"7": { "name": "keyword.control.article" },
+				"8": { "patterns": [{ "include": "#segment-argument" }] },
+				"9": { "name": "punctuation.segment.paren.end" },
+				"10": { "name": "punctuation.segment.content" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-italic": {
+			"begin": "//",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "//",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-bold": {
+			"begin": "\\*\\*",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "\\*\\*",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-underline": {
+			"begin": "__",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "__",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-translation": {
+			"begin": "(\\{)(\\w+:(?:\\w+|\\{\\w+(?:\\.\\w+)*\\}))(?:(:)(?:(RANDOM)|(\\*)|(\\d+)|(\\{\\w+(?:\\.\\w+)*\\})))?(?=\\}|:\\()",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "patterns": [{ "include": "#address" }] },
+				"3": { "name": "punctuation.segment.address" },
+				"4": { "name": "keyword.control.random" },
+				"5": { "name": "keyword.control.random" },
+				"6": { "name": "constant.numeric.integer" },
+				"7": { "patterns": [{ "include": "#segment-argument" }]}
+			},
+			"end": "\\)?\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{
+					"match": "(:\\()(\\.\\.\\.)(\\))",
+					"captures": {
+						"1": { "name": "punctuation.segment.paren.begin" },
+						"2": { "name": "punctuation.segment.splat" },
+						"3": { "name": "punctuation.segment.paren.end" }
+					}
+				},
+				{
+					"begin": ":\\(",
+					"beginCaptures": { "0": { "name": "punctuation.segment.paren.begin" } },
+					"end": "(?=\\))",
+					"patterns": [
+						{ "match": "\\,", "name": "punctuation.segment.additional" }
+					]
+				}
+			]
+		},
 		
 		"argument": { 
 			"name": "segment.argument",
 			"patterns": [
 				{ "name": "punctuation.segment.argument", "match": "\\." },
 				{ "name": "variable.other.property.segment.argument", "match": "\\w+" }
+			] 
+		},
+		"address": { 
+			"name": "segment.address",
+			"patterns": [
+				{ "name": "punctuation.segment.address", "match": "[\\.:]" },
+				{ "name": "entity.name.type", "match": "\\w+" }
 			] 
 		}
 	}
