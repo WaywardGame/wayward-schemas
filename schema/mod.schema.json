@@ -19,6 +19,12 @@
 			"description": "The name of the person/team that made the mod.",
 			"type": "string"
 		},
+		"github": {
+			"description": "The link to the GitHub repository for this mod.",
+			"type": "string",
+			"format": "uri",
+			"pattern": "^https?://github.com/"
+		},
 		"dependencies": {
 			"description": "A list of mods that your mod requires to be enabled to function correctly. Each entry should be a string representing the mod's Steam Workshop ID. For example, the mod with the URL `https://steamcommunity.com/sharedfiles/filedetails/?id=879852137` has the ID `879852137`",
 			"type": "array",
