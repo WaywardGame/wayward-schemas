@@ -1,0 +1,101 @@
+{
+	"$schema": "https://raw.githubusercontent.com/Septh/tmlanguage/master/tmLanguage.schema.json",
+	"scopeName": "wayward.language.entry",
+	"patterns": [
+		{ "include": "#segment" }
+	],
+	"injectionSelector": "L:string.quoted.double.json",
+	"repository": {
+		"segment": {
+			"name": "segment",
+			"patterns": [
+				{ "include": "#segment-escaped" },
+				{ "include": "#segment-argument" },
+				{ "include": "#segment-conditional" },
+				{ "include": "#segment-color" },
+				{ "include": "#segment-list" },
+				{ "include": "#segment-bindings" }
+			]
+		},
+		"segment-escaped": {
+			"name": "segment.escaped",
+			"begin": "\\{\\{",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "\\}\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "match": ".*?(?=\\}\\})" }
+			]
+		},
+		"segment-argument": {
+			"begin": "(\\{)(\\w+(?:\\.\\w+)*)(?=\\})",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "patterns": [ { "include": "#argument"} ] }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-conditional": {
+			"begin": "(\\{)((?:\\w+(?:\\.\\w+)*(?:(?:!?=|[<>]=?)(?:[\\w\\.]+|\\{\\w+(?:\\.\\w+)*\\}))?[&, ]?)+)(\\?)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { 
+					"patterns": [ 
+						{ "include": "#argument"},
+						{ "match": "!?=|[<>]=?", "name": "punctuation.segment.conditional.operator" },
+						{ "match": "[&,]", "name": "punctuation.segment.conditional.and" },
+						{ "include": "#segment-argument"}
+					] 
+				},
+				"3": { "name": "punctuation.segment.conditional.if" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "match": ":", "name": "punctuation.segment.conditional.else" }
+			]
+		},
+		"segment-color": {
+			"begin": "(\\{#)(?:([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|(\\{\\w+(?:\\.\\w+)*\\})|(--(?:[\\w-]+|\\{\\w+(?:\\.\\w+)*\\})+))(:)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "constant.other.color.rgb-value.hex" },
+				"3": { "patterns": [ { "include": "#argument"} ] },
+				"4": { "name": "variable.css", "patterns": [ { "include": "#segment-argument"} ] },
+				"5": { "name": "punctuation.segment.color.begin" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-list": {
+			"begin": "(\\{)(\\w+(?:\\.\\w+)*)?(\\.\\.\\.)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "patterns": [ { "include": "#argument"} ] },
+				"3": { "name": "punctuation.segment.list.begin" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-bindings": {
+			"begin": "(\\{)(BINDINGS)(:)(\\w+|\\{\\w+(?:\\.\\w+)*\\})(?=\\})",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "keyword.control.bindings" },
+				"3": { "name": "punctuation.segment.bindings.begin" },
+				"4": { "patterns": [ { "include": "#segment-argument"} ] }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		
+		"argument": { 
+			"name": "segment.argument",
+			"patterns": [
+				{ "name": "punctuation.segment.argument", "match": "\\." },
+				{ "name": "variable.other.property.segment.argument", "match": "\\w+" }
+			] 
+		}
+	}
+}

@@ -44,6 +44,15 @@
 					"launch_options.json"
 				]
 			}
+		],
+		"grammars": [
+			{
+				"scopeName": "wayward.language.entry",
+				"path": "./syntaxes/languageEntry.json",
+				"injectTo": [
+					"source.json.comments"
+				]
+			}
 		]
 	}
 }
