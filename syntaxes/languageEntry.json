@@ -184,21 +184,21 @@
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
 		"segment-italic": {
-			"begin": "//",
+			"begin": "\\{/",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
-			"end": "//",
+			"end": "/\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
 		"segment-bold": {
-			"begin": "\\*\\*",
+			"begin": "\\{\\*",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
-			"end": "\\*\\*",
+			"end": "\\*\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
 		"segment-underline": {
-			"begin": "__",
+			"begin": "\\{_",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
-			"end": "__",
+			"end": "_\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
 		"segment-translation": {
