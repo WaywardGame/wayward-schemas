@@ -26,9 +26,12 @@
 				{ "include": "#segment-italic" },
 				{ "include": "#segment-bold" },
 				{ "include": "#segment-underline" },
-				{ "include": "#segment-translation" }
+				{ "include": "#segment-translation" },
+				{ "include": "#segment-tooltip" },
+				{ "include": "#segment-list-item" }
 			]
 		},
+
 		"segment-escaped": {
 			"name": "segment.escaped",
 			"begin": "\\{\\{",
@@ -36,11 +39,17 @@
 			"end": "\\}\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
 			"patterns": [
-				{ "match": ".*?(?=\\}\\})" }
+				{ 
+					"match": ".*?(?=\\}\\})",
+					"patterns": [
+						{ "include": "#constant" }
+					]
+				}
 			]
 		},
 		"segment-argument": {
-			"begin": "(\\{)(\\w+(?:\\.\\w+)*)(?=\\})",
+			"name": "segment.argument",
+			"begin": "(\\{)\\s*(\\w+(?:\\.\\w+)*)\\s*(?=\\})",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { "patterns": [ { "include": "#argument"} ] }
@@ -49,7 +58,8 @@
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
 		"segment-conditional": {
-			"begin": "(\\{)((?:\\w+(?:\\.\\w+)*(?:(?:!?=|[<>]=?)(?:[\\w\\.]+|\\{\\w+(?:\\.\\w+)*\\}))?[&, ]?)+)(\\?)",
+			"name": "segment.conditional",
+			"begin": "(\\{)\\s*((?:\\w+(?:\\.\\w+)*(?:(?:!?=|[<>]=?)(?:[\\w\\.]+|\\{\\w+(?:\\.\\w+)*\\}))?[&, ]?)+)\\s*(\\?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { 
@@ -65,10 +75,12 @@
 			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
 			"patterns": [
-				{ "match": ":", "name": "punctuation.segment.conditional.else" }
+				{ "match": ":", "name": "punctuation.segment.conditional.else" },
+				{ "include": "#constant" }
 			]
 		},
 		"segment-color": {
+			"name": "segment.color",
 			"begin": "(\\{#)(?:([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|(\\{\\w+(?:\\.\\w+)*\\})|(--(?:[\\w-]+|\\{\\w+(?:\\.\\w+)*\\})+))(:)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -78,9 +90,13 @@
 				"5": { "name": "punctuation.segment.color.begin" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-list": {
+			"name": "segment.list",
 			"begin": "(\\{)(\\w+(?:\\.\\w+)*)?(\\.\\.\\.?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -88,9 +104,13 @@
 				"3": { "name": "punctuation.segment.list.begin" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-bindings": {
+			"name": "segment.bindings",
 			"begin": "(\\{)(BINDINGS)(:)(\\w+|\\{\\w+(?:\\.\\w+)*\\})(?=\\})",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -102,12 +122,17 @@
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},
 		"segment-heading": {
+			"name": "segment.heading",
 			"begin": "\\{#{1,6} ",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-link": {
+			"name": "segment.link",
 			"begin": "(\\{)(LINK)?(\\()(?:(https?:\\/\\/.*?)|(Menu\\.(?:\\w+(?:\\.\\w+)?)))(\\):?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -118,9 +143,13 @@
 				"6": { "name": "punctuation.segment.paren.end" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-number-words": {
+			"name": "segment.number-words",
 			"begin": "(\\{#)(WORDS)(:)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -128,9 +157,13 @@
 				"3": { "name": "punctuation.segment.content" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-number-roman": {
+			"name": "segment.number-roman",
 			"begin": "(\\{#)(ROMAN)(:)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -138,9 +171,13 @@
 				"3": { "name": "punctuation.segment.content" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-number-places": {
+			"name": "segment.number-places",
 			"begin": "(\\{#)(\\d)(:)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -148,9 +185,13 @@
 				"3": { "name": "punctuation.segment.content" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-number-percent": {
+			"name": "segment.number-percent",
 			"begin": "(\\{%)(\\d)?(:)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -158,15 +199,23 @@
 				"3": { "name": "punctuation.segment.content" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-number-difference": {
+			"name": "segment.number-difference",
 			"begin": "\\{\\+",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-pluralize": {
+			"name": "segment.pluralize",
 			"begin": "(\\{)(NOUN|PLURAL|ARTICLE)(?:(\\()(?:(\\d+[\\d\\.]*)|(\\{\\w+(?:\\.\\w+)*\\}))?(?:(?:(?<=[^\\(])(,\\s*|\\s+)|(?<=\\())(?:(ARTICLE)|(\\{\\w+(?:\\.\\w+)*\\})))?(\\)))?((?<=\\)):?|(?<=[^\\)]):)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
@@ -181,28 +230,44 @@
 				"10": { "name": "punctuation.segment.content" }
 			},
 			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-italic": {
+			"name": "segment.italic",
 			"begin": "\\{/",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "/\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-bold": {
+			"name": "segment.bold",
 			"begin": "\\{\\*",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "\\*\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-underline": {
+			"name": "segment.underline",
 			"begin": "\\{_",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "_\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
 		},
 		"segment-translation": {
-			"begin": "(\\{)(\\w+:(?:\\w+|\\{\\w+(?:\\.\\w+)*\\}))(?:(:)(?:(RANDOM)|(\\*)|(\\d+)|(\\{\\w+(?:\\.\\w+)*\\})))?(?=\\}|:\\()",
+			"name": "segment.translation",
+			"begin": "(\\{)(\\w+:(?:\\w+|\\{\\w+(?:\\.\\w+)*\\}))(?:(:)(?:(RANDOM)|(\\*)|(\\d+)|(\\{\\w+(?:\\.\\w+)*\\})))?(?=\\}|:\\(|\\s*\\?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { "patterns": [{ "include": "#address" }] },
@@ -212,7 +277,7 @@
 				"6": { "name": "constant.numeric.integer" },
 				"7": { "patterns": [{ "include": "#segment-argument" }]}
 			},
-			"end": "\\)?\\}",
+			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
 			"patterns": [
 				{
@@ -226,14 +291,59 @@
 				{
 					"begin": ":\\(",
 					"beginCaptures": { "0": { "name": "punctuation.segment.paren.begin" } },
-					"end": "(?=\\))",
+					"end": "\\)",
+					"endCaptures": { "0": { "name": "punctuation.segment.paren.end" } },
 					"patterns": [
 						{ "match": "\\,", "name": "punctuation.segment.additional" }
+					]
+				},
+				{
+					"begin": "\\?",
+					"beginCaptures": { "0": { "name": "punctuation.segment.conditional.if" } },
+					"end": "(?=\\})",
+					"patterns": [
+						{ "match": ":", "name": "punctuation.segment.conditional.else" },
+						{ "include": "#constant" }
 					]
 				}
 			]
 		},
+		"segment-tooltip": {
+			"name": "segment.tooltip",
+			"begin": "\\{(?=TOOLTIP\\()",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ 
+					"begin": "(TOOLTIP)(\\()",
+					"beginCaptures": {
+						"1": { "name": "entity.name.function" },
+						"2": { "name": "punctuation.segment.paren.begin" }
+					},
+					"end": "\\):?",
+					"endCaptures": { "0": { "name": "punctuation.segment.paren.end" } },
+					"patterns": [
+						{ "include": "#constant" }
+					]
+				},
+				{ "include": "#constant" }
+			]
+		},
+		"segment-list-item": {
+			"name": "segment.list-item",
+			"begin": "- ",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "(?<=(?:\\\\\\\\)*|[^\\\\])(?=\\n|\"|\\})",
+			"patterns": [
+				{ "include": "#constant" }
+			]
+		},
 		
+		"constant": {
+			"match": "\\\\(?:[\"\\\\bfnrt]|u[0-9a-fA-F]{4})",
+			"name": "constant.character.escape.json"
+		},
 		"argument": { 
 			"name": "segment.argument",
 			"patterns": [
