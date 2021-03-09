@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.4.0
+Wayward 2.10.0 update.
+- Added interpolation syntax highlighting to language files. In case any mods add languages programmatically, `//#lang` and `//#endlang` comments can be used to enable interpolation syntax highlighting within strings.
+
 ## 1.3.1
 Wayward 2.9.3 update.
 - `launch_options.json` now allows comments.
