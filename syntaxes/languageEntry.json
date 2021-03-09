@@ -28,7 +28,8 @@
 				{ "include": "#segment-pluralize" },
 				{ "include": "#segment-translation" },
 				{ "include": "#segment-tooltip" },
-				{ "include": "#segment-list-item" }
+				{ "include": "#segment-list-item" },
+				{ "include": "#segment-this-entry" }
 			]
 		},
 
@@ -358,6 +359,21 @@
 			"begin": "- ",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "(?<=(?:\\\\\\\\)*|[^\\\\])(?=\\n|\"|\\})",
+			"patterns": [
+				{ "include": "#constant" }
+			]
+		},
+		"segment-this-entry": {
+			"name": "segment.this-entry",
+			"begin": "(\\{@)(\\d+)?(?:(\\.\\.\\.?|-)(\\d+)?)?",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "name": "constant.numeric.integer" },
+				"3": { "name": "punctuation.segment.range" },
+				"4": { "name": "constant.numeric.integer" }
+			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
 			"patterns": [
 				{ "include": "#constant" }
 			]
