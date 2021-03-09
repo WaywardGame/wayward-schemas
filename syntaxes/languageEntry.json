@@ -4,7 +4,7 @@
 	"patterns": [
 		{ "include": "#segment" }
 	],
-	"injectionSelector": "L:source.json string.quoted.double, source.ts wayward.language string.quoted.double",
+	"injectionSelector": "L:source.json string.quoted, source.ts wayward.language string.quoted, source.ts wayward.language string.template",
 	"repository": {
 		"segment": {
 			"name": "segment",
