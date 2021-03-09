@@ -1,0 +1,19 @@
+{
+	"$schema": "https://raw.githubusercontent.com/Septh/tmlanguage/master/tmLanguage.schema.json",
+	"scopeName": "wayward.language.section",
+	"patterns": [
+		{ 
+			"name": "wayward.language",
+			"begin": "//#lang(?=\\r?\\n)",
+			"beginCaptures": { "0": { "name": "keyword.control.lang.begin" }},
+			"end": "//#endlang(?=\\r?\\n)",
+			"endCaptures": { "0": { "name": "keyword.control.lang.end" }},
+			"patterns": [
+				{ "include": "source.ts#directives" },
+				{ "include": "source.ts#statements" },
+				{ "include": "source.ts#shebang" }
+			]
+		}
+	],
+	"injectionSelector": "L:source.ts"
+}

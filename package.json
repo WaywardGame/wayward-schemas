@@ -50,7 +50,15 @@
 				"scopeName": "wayward.language.entry",
 				"path": "./syntaxes/languageEntry.json",
 				"injectTo": [
-					"source.json.comments"
+					"source.json.comments",
+					"source.ts"
+				]
+			},
+			{
+				"scopeName": "wayward.language.section",
+				"path": "./syntaxes/languageSection.json",
+				"injectTo": [
+					"source.ts"
 				]
 			}
 		]
