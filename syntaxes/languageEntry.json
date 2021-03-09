@@ -10,6 +10,9 @@
 			"name": "segment",
 			"patterns": [
 				{ "include": "#segment-escaped" },
+				{ "include": "#segment-italic" },
+				{ "include": "#segment-bold" },
+				{ "include": "#segment-underline" },
 				{ "include": "#segment-argument" },
 				{ "include": "#segment-conditional" },
 				{ "include": "#segment-color" },
@@ -23,9 +26,6 @@
 				{ "include": "#segment-number-percent" },
 				{ "include": "#segment-number-difference" },
 				{ "include": "#segment-pluralize" },
-				{ "include": "#segment-italic" },
-				{ "include": "#segment-bold" },
-				{ "include": "#segment-underline" },
 				{ "include": "#segment-translation" },
 				{ "include": "#segment-tooltip" },
 				{ "include": "#segment-list-item" }
@@ -80,19 +80,42 @@
 			]
 		},
 		"segment-color": {
-			"name": "segment.color",
-			"begin": "(\\{#)(?:([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})|(\\{\\w+(?:\\.\\w+)*\\})|(--(?:[\\w-]+|\\{\\w+(?:\\.\\w+)*\\})+))(:)",
-			"beginCaptures": { 
-				"1": { "name": "punctuation.segment.begin" },
-				"2": { "name": "constant.other.color.rgb-value.hex" },
-				"3": { "patterns": [ { "include": "#argument"} ] },
-				"4": { "name": "variable.css", "patterns": [ { "include": "#segment-argument"} ] },
-				"5": { "name": "punctuation.segment.color.begin" }
-			},
-			"end": "\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
 			"patterns": [
-				{ "include": "#constant" }
+				{
+					"name": "segment.color",
+					"begin": "(\\{#)([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})(:)",
+					"beginCaptures": { 
+						"1": { "name": "punctuation.segment.begin" },
+						"2": { "name": "constant.other.color.rgb-value.hex" },
+						"3": { "name": "punctuation.segment.color.begin" }
+					},
+					"end": "\\}",
+					"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+					"patterns": [
+						{ "include": "#constant" }
+					]
+				},
+				{
+					"name": "segment.color",
+					"begin": "\\{#(?=--)",
+					"beginCaptures": { "0": { "name": "punctuation.segment.begin" }	},
+					"end": "\\}",
+					"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+					"patterns": [
+						{
+							"begin": "--",
+							"beginCaptures": { "0": { "name": "variable.css" } },
+							"contentName": "variable.css",
+							"end": ":",
+							"endCaptures": { "0": { "name": "punctuation.segment.content" } },
+							"patterns": [ 
+								{ "include": "#segment" },
+								{ "include": "#constant" }
+							]
+						},
+						{ "include": "#constant" }
+					]
+				}
 			]
 		},
 		"segment-list": {
