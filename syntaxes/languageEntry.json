@@ -366,12 +366,14 @@
 		},
 		"segment-this-entry": {
 			"name": "segment.this-entry",
-			"begin": "(\\{@)(\\d+)?(?:(\\.\\.\\.?|-)(\\d+)?)?",
+			"begin": "(\\{@)(?:(%)(?=\\})|(\\d+)?(?:(\\.\\.\\.?|-)(\\d+)?(%)?)?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
-				"2": { "name": "constant.numeric.integer" },
-				"3": { "name": "punctuation.segment.range" },
-				"4": { "name": "constant.numeric.integer" }
+				"2": { "name": "punctuation.segment.random" },
+				"3": { "name": "constant.numeric.integer" },
+				"4": { "name": "punctuation.segment.range" },
+				"5": { "name": "constant.numeric.integer" },
+				"6": { "name": "punctuation.segment.random" }
 			},
 			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
