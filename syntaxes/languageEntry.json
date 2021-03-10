@@ -29,7 +29,8 @@
 				{ "include": "#segment-translation" },
 				{ "include": "#segment-tooltip" },
 				{ "include": "#segment-list-item" },
-				{ "include": "#segment-this-entry" }
+				{ "include": "#segment-this-entry" },
+				{ "include": "#segment-sentence-case" }
 			]
 		},
 
@@ -372,6 +373,16 @@
 				"3": { "name": "punctuation.segment.range" },
 				"4": { "name": "constant.numeric.integer" }
 			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
+		},
+		"segment-sentence-case": {
+			"name": "segment.sentence-case",
+			"begin": "\\{\\^",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
 			"patterns": [
