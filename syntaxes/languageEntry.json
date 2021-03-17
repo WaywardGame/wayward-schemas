@@ -30,7 +30,9 @@
 				{ "include": "#segment-tooltip" },
 				{ "include": "#segment-list-item" },
 				{ "include": "#segment-this-entry" },
-				{ "include": "#segment-sentence-case" }
+				{ "include": "#segment-sentence-case" },
+				{ "include": "#segment-randomization" },
+				{ "include": "#segment-interpolate-argument" }
 			]
 		},
 
@@ -384,6 +386,27 @@
 		"segment-sentence-case": {
 			"name": "segment.sentence-case",
 			"begin": "\\{\\^",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "include": "#constant" }
+			]
+		},
+		"segment-randomization": {
+			"name": "segment.randomization",
+			"begin": "\\{%",
+			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
+			"patterns": [
+				{ "match": ":", "name": "punctuation.segment.randomization.additional" },
+				{ "include": "#constant" }
+			]
+		},
+		"segment-interpolate-argument": {
+			"name": "segment.interpolate-argument",
+			"begin": "\\{!!",
 			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
 			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
