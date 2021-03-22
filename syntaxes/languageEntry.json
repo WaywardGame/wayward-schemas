@@ -9,7 +9,6 @@
 		"segment": {
 			"name": "segment",
 			"patterns": [
-				{ "include": "#segment-escaped" },
 				{ "include": "#segment-italic" },
 				{ "include": "#segment-bold" },
 				{ "include": "#segment-underline" },
@@ -36,21 +35,6 @@
 			]
 		},
 
-		"segment-escaped": {
-			"name": "segment.escaped",
-			"begin": "\\{\\{",
-			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
-			"end": "\\}\\}",
-			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
-			"patterns": [
-				{ 
-					"match": ".*?(?=\\}\\})",
-					"patterns": [
-						{ "include": "#constant" }
-					]
-				}
-			]
-		},
 		"segment-argument": {
 			"name": "segment.argument",
 			"begin": "(\\{)\\s*(\\w+(?:\\.\\w+)*)\\s*(?=\\})",
@@ -79,8 +63,12 @@
 			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } },
 			"patterns": [
-				{ "match": ":", "name": "punctuation.segment.conditional.else" },
-				{ "include": "#constant" }
+				{
+					"match": "\\\\\\\\:",
+					"name": "constant.character.escape.json"
+				},
+				{ "include": "#constant" },
+				{ "match": ":", "name": "punctuation.segment.conditional.else" }
 			]
 		},
 		"segment-color": {
@@ -329,8 +317,12 @@
 					"beginCaptures": { "0": { "name": "punctuation.segment.conditional.if" } },
 					"end": "(?=\\})",
 					"patterns": [
-						{ "match": ":", "name": "punctuation.segment.conditional.else" },
-						{ "include": "#constant" }
+						{
+							"match": "\\\\\\\\:",
+							"name": "constant.character.escape.json"
+						},
+						{ "include": "#constant" },
+						{ "match": ":", "name": "punctuation.segment.conditional.else" }
 					]
 				}
 			]
@@ -416,7 +408,7 @@
 		},
 		
 		"constant": {
-			"match": "\\\\(?:[\"\\\\bfnrt]|u[0-9a-fA-F]{4})",
+			"match": "\\\\(?:\\\\[\\{\\}]|[\"\\\\bfnrt]|u[0-9a-fA-F]{4})",
 			"name": "constant.character.escape.json"
 		},
 		"argument": { 
