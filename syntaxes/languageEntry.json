@@ -282,7 +282,7 @@
 		},
 		"segment-translation": {
 			"name": "segment.translation",
-			"begin": "(\\{)(\\w+:(?:\\w+|\\{\\w+(?:\\.\\w+)*\\}))(?:(:)(?:(RANDOM)|(\\*)|(\\d+)|(\\{\\w+(?:\\.\\w+)*\\})))?(?=\\}|:\\(|\\s*\\?)",
+			"begin": "(\\{@)(\\w+:(?:\\w+|\\{\\w+(?:\\.\\w+)*\\}))(?:(:)(?:(RANDOM)|(\\*)|(\\d+)|(\\{\\w+(?:\\.\\w+)*\\})))?(?=\\}|:\\(|\\s*\\?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { "patterns": [{ "include": "#address" }] },
