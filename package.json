@@ -15,22 +15,22 @@
 		"Other"
 	],
 	"contributes": {
-		"jsonValidation":[
+		"jsonValidation": [
 			{
 				"fileMatch": "mod.json",
 				"url": "./schema/mod.schema.json"
 			},
 			{
 				"fileMatch": "lang/*.json",
-				"url": "./schema/lang.schema.json" 
+				"url": "./schema/lang.schema.json"
 			},
 			{
 				"fileMatch": "imageOverrides.json",
-				"url": "./schema/imageOverrides.schema.json" 
+				"url": "./schema/imageOverrides.schema.json"
 			},
 			{
 				"fileMatch": "customizations.json",
-				"url": "./schema/customizations.schema.json" 
+				"url": "./schema/customizations.schema.json"
 			}
 		],
 		"languages": [
@@ -43,15 +43,27 @@
 					"customizations.json",
 					"launch_options.json"
 				]
+			},
+			{
+				"id": "quilt",
+				"extensions": [
+					".quilt"
+				]
 			}
 		],
 		"grammars": [
+			{
+				"language": "quilt",
+				"scopeName": "source.quilt",
+				"path": "./syntaxes/quilt.json"
+			},
 			{
 				"scopeName": "wayward.language.entry",
 				"path": "./syntaxes/languageEntry.json",
 				"injectTo": [
 					"source.json.comments",
-					"source.ts"
+					"source.ts",
+					"source.quilt"
 				]
 			},
 			{
@@ -62,5 +74,17 @@
 				]
 			}
 		]
+	},
+	"activationEvents": [
+		"onLanguage:quilt"
+	],
+	"main": "hover/Extension.js",
+	"dependencies": {
+		"vscode-languageclient": "^7.0.0"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.56.0",
+		"@types/node": "15.6.1",
+		"typescript": "4.3.2"
 	}
 }

@@ -1,3 +1,6 @@
 .vscode/**
 .vscode-test/**
 .gitignore
+hover/Extension.ts
+node_modules
+*.vsix

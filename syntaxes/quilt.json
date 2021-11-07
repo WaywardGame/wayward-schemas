@@ -1,0 +1,51 @@
+{
+	"$schema": "https://raw.githubusercontent.com/Septh/tmlanguage/master/tmLanguage.schema.json",
+	"scopeName": "source.quilt",
+	"patterns": [
+		{ "include": "#start-comment" },
+		{ "include": "#section"},
+		{ "include": "#translation"}
+	],
+	"repository": {
+		"start-comment": {
+			"begin": "^(?!((?:[\\w-]+/)*[\\w-]+:|#+ .+))",
+			"name": "comment.quilt",
+			"end": "(?=(^|\\n)((?:[\\w-]+/)*[\\w-]+:|#+ .+))"
+		},
+		"section": {
+			"begin": "(?:^|(?<=\\n))(#+) (.+)",
+			"beginCaptures": {
+				"1": { "name": "punctuation.section.start.quilt" },
+				"2": { 
+					"patterns": [
+						{ "match": "[\\w-]+", "name": "entity.name.type.quilt" },
+						{ "match": "/", "name": "punctuation.section.start.quilt" }
+					]
+				}
+			},
+			"contentName": "comment.quilt",
+			"end": "(?=(^|\\n)((?:[\\w-]+/)*[\\w-]+:|#+ .+))"
+		},
+		"translation": {
+			"begin": "(?:^|(?<=\\n))((?:[\\w-]+/)*)([\\w-]+)(:)",
+			"beginCaptures": {
+				"1": {
+					"patterns": [
+						{ "match": "[\\w-]+", "name": "entity.name.type.quilt" },
+						{ "match": "/", "name": "punctuation.section.start.quilt" }
+					]
+				},
+				"2": { "name": "support.type.property-name.quilt" },
+				"3": { "name": "punctuation.separator.dictionary.key-value.quilt" }
+			},
+			"contentName": "string.quilt",
+			"patterns": [
+				{
+					"match": "\\\\[/:]",
+					"name": "constant.character.escape.quilt"
+				}
+			],
+			"end": "(?=(^|\\n)((?:[\\w-]+/)*[\\w-]+:|#+ .+))"
+		}
+	}
+}
