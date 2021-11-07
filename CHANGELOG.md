@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.1
+- Fixed list segment being very fragile.
+
 ## 1.4.0
 Wayward 2.10.0 update.
 - Added interpolation syntax highlighting to language files. In case any mods add languages programmatically, `//#lang` and `//#endlang` comments can be used to enable interpolation syntax highlighting within strings.

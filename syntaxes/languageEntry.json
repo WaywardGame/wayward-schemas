@@ -350,13 +350,8 @@
 			]
 		},
 		"segment-list-item": {
-			"name": "segment.list-item",
-			"begin": "- ",
-			"beginCaptures": { "0": { "name": "punctuation.segment.begin" } },
-			"end": "(?<=(?:\\\\\\\\)*|[^\\\\])(?=\\n|\"|\\})",
-			"patterns": [
-				{ "include": "#constant" }
-			]
+			"name": "punctuation.segment.list-item",
+			"match": "- "
 		},
 		"segment-this-entry": {
 			"name": "segment.this-entry",
