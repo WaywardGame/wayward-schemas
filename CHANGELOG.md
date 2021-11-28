@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.2
+- Fixed the conditional segment displaying numeric comparisons as arguments.
+
 ## 1.4.1
 - Fixed list segment being very fragile.
 

@@ -52,6 +52,7 @@
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { 
 					"patterns": [ 
+						{ "match": "(?<=!?=|[<>]=?)[\\d\\.]+", "name": "constant.numeric" },
 						{ "include": "#argument"},
 						{ "match": "!?=|[<>]=?", "name": "punctuation.segment.conditional.operator" },
 						{ "match": "[&,]", "name": "punctuation.segment.conditional.and" },
