@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.3
+Wayward 2.11.0 update.
+
 ## 1.4.2
 - Fixed the conditional segment displaying numeric comparisons as arguments.
 
