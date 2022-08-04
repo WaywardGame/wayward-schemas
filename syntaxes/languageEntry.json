@@ -13,6 +13,7 @@
 				{ "include": "#segment-bold" },
 				{ "include": "#segment-underline" },
 				{ "include": "#segment-argument" },
+				{ "include": "#segment-falsy-coalescing" },
 				{ "include": "#segment-conditional" },
 				{ "include": "#segment-color" },
 				{ "include": "#segment-list" },
@@ -42,6 +43,20 @@
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { "patterns": [ { "include": "#argument"} ] }
 			},
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
+		},
+		"segment-falsy-coalescing": {
+			"name": "segment.falsy-coalescing",
+			"begin": "(\\{)\\s*(\\w+(?:\\.\\w+)*)\\s*(\\?\\?)",
+			"beginCaptures": { 
+				"1": { "name": "punctuation.segment.begin" },
+				"2": { "patterns": [ { "include": "#argument"} ] },
+				"3": { "name": "punctuation.segment.falsy-coalescing" }
+			},
+			"patterns": [
+				{ "include": "#constant" }
+			],
 			"end": "\\}",
 			"endCaptures": { "0": { "name": "punctuation.segment.end" } }
 		},

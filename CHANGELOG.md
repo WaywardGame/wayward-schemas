@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.4
+- Add support for falsy coalescing segment.
+
 ## 1.4.3
 Wayward 2.11.0 update.
 
