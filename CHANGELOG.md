@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.5
+- Update syntax for links.
+
 ## 1.4.4
 - Add support for falsy coalescing segment.
 

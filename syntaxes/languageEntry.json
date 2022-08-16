@@ -164,7 +164,7 @@
 		},
 		"segment-link": {
 			"name": "segment.link",
-			"begin": "(\\{)(LINK)?(\\()(?:(https?:\\/\\/.*?)|(Menu\\.(?:\\w+(?:\\.\\w+)?)))(\\):?)",
+			"begin": "(\\{)(LINK)?(\\()(?:(https?:\\/\\/.*?)|(\\w+(?:\\/\\w+)*))(\\):?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { "name": "entity.name.function" },
@@ -432,7 +432,7 @@
 		"address": { 
 			"name": "segment.address",
 			"patterns": [
-				{ "name": "punctuation.segment.address", "match": "[\\.:]" },
+				{ "name": "punctuation.segment.address", "match": "[\\.:\\/]" },
 				{ "name": "entity.name.type", "match": "\\w+" }
 			] 
 		}
