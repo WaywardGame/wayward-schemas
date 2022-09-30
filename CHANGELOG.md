@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.4.6
+Wayward: Wheels & Wetlands update.
+
 ## 1.4.5
 - Update syntax for links.
 
