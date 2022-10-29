@@ -1,7 +1,10 @@
 # Change Log
 
+## 1.4.7
+Wayward: Wheels & Wetlands (Update 1)
+
 ## 1.4.6
-Wayward: Wheels & Wetlands update.
+Wayward: Wheels & Wetlands
 
 ## 1.4.5
 - Update syntax for links.
@@ -10,7 +13,7 @@ Wayward: Wheels & Wetlands update.
 - Add support for falsy coalescing segment.
 
 ## 1.4.3
-Wayward 2.11.0 update.
+Wayward: Horizons
 
 ## 1.4.2
 - Fixed the conditional segment displaying numeric comparisons as arguments.
@@ -19,29 +22,29 @@ Wayward 2.11.0 update.
 - Fixed list segment being very fragile.
 
 ## 1.4.0
-Wayward 2.10.0 update.
+Wayward: Seafarer+
 - Added interpolation syntax highlighting to language files. In case any mods add languages programmatically, `//#lang` and `//#endlang` comments can be used to enable interpolation syntax highlighting within strings.
 
 ## 1.3.1
-Wayward 2.9.3 update.
+Wayward: Seafarer (Update 3)
 - `launch_options.json` now allows comments.
 
 ## 1.3.0
-Wayward 2.9.2 update.
+Wayward: Seafarer (Update 2)
 - All Wayward JSON files now allow comments.
 
 ## 1.2.2
-Wayward 2.9.0 update.
+Wayward: Seafarer
 
 ## 1.2.1
-Wayward 2.8.5 update.
+Wayward: Odds & Ends (Update 5)
 - `lang.json`
 	- Fixed `shouldPluralize` still existing at all. (This actually got removed a while back.)
 	- Added missing `alternateFontStyle` option.
 	- Updated default entries list.
 
 ## 1.2.0
-Wayward 2.8.0 update.
+Wayward: Odds & Ends
 - `mod.json`
 	- Updated `multiplayer` to an enum of `clientside`, `compatible`, or `serverside`.
 	- Added `allowUnlockingMilestones` property.
@@ -55,7 +58,7 @@ Wayward 2.8.0 update.
 	- Additional unknown properties are no longer allowed.
 
 ## 1.1.3
-Wayward 2.7.3 update.
+Wayward: Deserted Trials (Update 3)
 - `lang.json`
 	- The count matcher in article rules now supports `{min: number, max?: number}` objects.
 
@@ -66,7 +69,7 @@ Wayward 2.7.3 update.
 - Fix `null` dictionary entries not working.
 
 ## 1.1.0
-Wayward 2.7 update.
+Wayward: Deserted Trials
 - `mod.json` — Added `tags`
 - `lang.json`
 	- Added `pluralizationRules`

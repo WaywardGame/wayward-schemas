@@ -6,10 +6,10 @@ View the extension on the [Visual Studio Code Marketplace](https://marketplace.v
 
 ### Provided schemas:
 
-- [`mod.json`](https://waywardgame.github.io/index.html#mod-json)
-- [`lang/*.json`](https://waywardgame.github.io/index.html#language-json)
-- [`customizations.json`](https://waywardgame.github.io/index.html#customizations-json)
-- [`imageOverrides.json`](https://waywardgame.github.io/index.html#imageoverrides-json)
+- [`mod.json`](https://github.com/WaywardGame/types/wiki/mod.json)
+- [`lang/*.json`](https://github.com/WaywardGame/types/wiki/Languages-&-Extensions)
+- [`customizations.json`](https://github.com/WaywardGame/types/wiki/Customizations)
+- [`imageOverrides.json`](https://github.com/WaywardGame/types/wiki/Image-Overrides)
 
 ### Notes
 
