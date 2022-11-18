@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.5.0
+Wayward: Wheels & Wetlands (Update 2)
+- Fixed language schema not knowing about `contextRules` or the changes to `articleRules`
+
 ## 1.4.7
 Wayward: Wheels & Wetlands (Update 1)
 
