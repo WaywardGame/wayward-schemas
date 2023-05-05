@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.5.1
+Wayward: Beacon's Call
+
 ## 1.5.0
 Wayward: Wheels & Wetlands (Update 2)
 - Fixed language schema not knowing about `contextRules` or the changes to `articleRules`
