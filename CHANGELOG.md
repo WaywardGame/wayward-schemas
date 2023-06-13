@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.5.2
+Wayward: Beacon's Call (Update 2)
+
 ## 1.5.1
 Wayward: Beacon's Call
 
