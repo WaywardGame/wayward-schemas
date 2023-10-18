@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.5.4
+- Add support for reference segment used in upcoming Wayward major
+
 ## 1.5.3
 Wayward: Beacon's Call (Update 3)
 
