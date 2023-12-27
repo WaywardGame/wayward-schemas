@@ -64,7 +64,7 @@
 		},
 		"segment-conditional": {
 			"name": "segment.conditional",
-			"begin": "(\\{)\\s*((?:\\w+(?:\\.\\w+)*(?:(?:!?=|[<>]=?)(?:[\\w\\.]+|\\{\\w+(?:\\.\\w+)*\\}))?[&, ]?)+)\\s*(\\?)",
+			"begin": "(\\{)\\s*((?:\\w+(?:\\.\\w+)*(?:(?:!?=|[<>]=?)(?:[\\w\\.]+|\\{\\w+(?:\\.\\w+)*\\}))?[&|, ]?)+)\\s*(\\?)",
 			"beginCaptures": { 
 				"1": { "name": "punctuation.segment.begin" },
 				"2": { 
@@ -72,7 +72,7 @@
 						{ "match": "(?<=!?=|[<>]=?)[\\d\\.]+", "name": "constant.numeric" },
 						{ "include": "#argument"},
 						{ "match": "!?=|[<>]=?", "name": "punctuation.segment.conditional.operator" },
-						{ "match": "[&,]", "name": "punctuation.segment.conditional.and" },
+						{ "match": "[&|,]", "name": "punctuation.segment.conditional.and" },
 						{ "include": "#segment-argument"}
 					] 
 				},

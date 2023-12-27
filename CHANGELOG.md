@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.5.5
+- Add support for "or" operator in conditional segments used in upcoming major
+
 ## 1.5.4
 - Add support for reference segment used in upcoming Wayward major
 
