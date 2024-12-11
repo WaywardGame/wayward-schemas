@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.6.0
+- Wayward: Runekeeper
+
 ## 1.5.5
 - Add support for "or" operator in conditional segments used in upcoming major
 
