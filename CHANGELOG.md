@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.6.2
+Wayward: Runekeeper (Update 2)
+
 ## 1.6.1
 Wayward: Runekeeper (Update 1)
 
