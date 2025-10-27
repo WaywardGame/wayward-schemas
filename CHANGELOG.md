@@ -1,5 +1,8 @@
 # Change Log
 
+## 1.7.0
+Wayward: Cursebreaker
+
 ## 1.6.5
 Wayward: Runekeeper (Update 6)
 
